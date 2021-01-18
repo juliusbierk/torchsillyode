@@ -50,11 +50,11 @@ def sillyode(func, y0, t, atol=1e-9, rtol=1e-7):
         def np_f(t, y):
             return func(torch.from_numpy(np.asarray(t)), torch.from_numpy(y)).numpy()
 
-        res = solve_ivp(np_f, (t.min(), t.max()), y0, rtol=rtol, atol=atol, dense_output=not requires_grad)
+        res = solve_ivp(np_f, (t.min(), t.max()), y0, t_eval=None if requires_grad else t.numpy(),
+                        rtol=rtol, atol=atol)
         if not requires_grad:
-            return torch.from_numpy(res.sol(t.detach().numpy())).t()
+            return torch.from_numpy(res.y).t()
 
     tt = torch.from_numpy(res.t)
     y = rk4(func, y0, t, tt)
-
     return y
