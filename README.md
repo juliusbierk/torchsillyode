@@ -12,6 +12,7 @@ But not fast enough for my use-cases!
 `torchsillyode` is a small script that makes the direct RK45 method about twice as fast.
 The idea is simple: we run RK45 without thinking about the backward pass.
 After this has been run, we rerun using RK4, which has far fewer FLOPs.
+This is quite a silly idea, hence the name, but could be implemented properly.
 
 For now I've only implemented this for RK4 and only on the CPU.
 Lots could be done to improve furhter.
