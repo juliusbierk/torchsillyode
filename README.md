@@ -44,7 +44,7 @@ if __name__ == '__main__':
 ```
 
 ### Timing
-See `examples/timings.py` for code which produces
+See `timings.py` for code which produces
 ```
 No .backward()
    torchdiffeq.odeint :  13.38 s
