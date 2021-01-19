@@ -25,7 +25,7 @@ class F(nn.Module):
         return r
 
 
-def run_code(backward, ode_method, jit=False):
+def run_code(backward, ode_method):
     dtype = torch.double
 
     t = torch.linspace(0, 2.5, 50, dtype=dtype)
@@ -33,10 +33,7 @@ def run_code(backward, ode_method, jit=False):
     func = F(dtype)
 
     if backward:
-        if jit:
-            yt = ode_method(func, y0, t, jit=True)
-        else:
-            yt = ode_method(func, y0, t)
+        yt = ode_method(func, y0, t)
         loss = torch.sum(yt ** 3)
         loss.backward()
     else:
