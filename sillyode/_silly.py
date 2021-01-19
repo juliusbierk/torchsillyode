@@ -6,7 +6,7 @@ def rk4(func, y0, t, tt):
     sol = [y0]
     i = 1
     j = 1
-    T = torch.tensor(0, dtype=y0.dtype)
+    T = 1.0 * tt[0]
     y = y0
     b = torch.tensor([1/6, 2/6, 2/6, 1/6], dtype=t.dtype)
 
